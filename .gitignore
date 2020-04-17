@@ -1,0 +1,15 @@
+# Editor generated files & folders
+.idea/
+
+# OS generated files
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+._*
+
+# Composer vendor folder
+vendor/
+
+# Symfony generated files & folders
+/var/
