@@ -2,6 +2,8 @@
 
 namespace App\Scraper;
 
+use App\Data\DataInterface;
+
 interface ScraperInterface
 {
     /**
@@ -9,19 +11,19 @@ interface ScraperInterface
      *
      * @return void
      */
-    public function scrape();
+    public function scrape(): void;
 
     /**
      * Gets the scraped content.
      *
      * @return string
      */
-    public function getContent();
+    public function getContent(): string;
 
     /**
      * Retrieves the scraped data.
      *
-     * @return array
+     * @return DataInterface
      */
-    public function getData();
+    public function getDataObject(): DataInterface;
 }

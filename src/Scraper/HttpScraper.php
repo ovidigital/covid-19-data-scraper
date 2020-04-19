@@ -2,6 +2,8 @@
 
 namespace App\Scraper;
 
+use App\Data\DataInterface;
+use App\Parser\ParserInterface;
 use Symfony\Component\HttpClient\CurlHttpClient;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -31,6 +33,11 @@ abstract class HttpScraper implements ScraperInterface
     protected $content = '';
 
     /**
+     * @var ParserInterface The parser object.
+     */
+    protected $parser;
+
+    /**
      * Scrapes the content.
      *
      * @return void
@@ -39,7 +46,7 @@ abstract class HttpScraper implements ScraperInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function scrape()
+    public function scrape(): void
     {
         $client = new CurlHttpClient();
 
@@ -53,7 +60,7 @@ abstract class HttpScraper implements ScraperInterface
      *
      * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -61,7 +68,10 @@ abstract class HttpScraper implements ScraperInterface
     /**
      * Get the data.
      *
-     * @return array
+     * @return DataInterface
      */
-    abstract public function getData();
+    public function getDataObject(): DataInterface
+    {
+        return $this->parser->parse($this->getContent());
+    }
 }

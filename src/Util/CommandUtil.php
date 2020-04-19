@@ -48,4 +48,42 @@ class CommandUtil
 
         return '';
     }
+
+    /**
+     * Add output format option.
+     *
+     * @param Command $command
+     */
+    public static function addOutputFormatOption(Command $command)
+    {
+        $command->addOption(
+            'format',
+            'f',
+            InputOption::VALUE_REQUIRED,
+            'Choose an alternative output format: "json" or "csv". If omitted, default format is PHP array.'
+        );
+    }
+
+    /**
+     * Validates the output format option.
+     *
+     * @param InputInterface $input
+     * @return string
+     */
+    public static function validateOutputFormatOption(InputInterface $input)
+    {
+        $format = $input->getOption('format');
+
+        if (!empty($format)) {
+            $format = strtolower($format);
+
+            if (!in_array($format, ['json', 'csv'])) {
+                throw new InvalidOptionException('Invalid output format.');
+            }
+
+            return $format;
+        }
+
+        return '';
+    }
 }

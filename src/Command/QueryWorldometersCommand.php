@@ -22,13 +22,13 @@ class QueryWorldometersCommand extends QueryCommand {
         $countryCode = $this->getCountryFilter();
 
         if ($countryCode) {
-            $scraper = new WorldometersCountryScraper($this->getFilters());
-            $scraper->scrape();
-            print_r($scraper->getData());
+            $scraper = new WorldometersCountryScraper($countryCode);
+            $this->output($scraper);
         }
         else {
             throw new InvalidOptionException('Please use the --country option.');
         }
+
         return 0;
     }
 }

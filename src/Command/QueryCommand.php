@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Scraper\ScraperInterface;
 use App\Util\CommandUtil;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,6 +15,7 @@ class QueryCommand extends Command
     protected $description = '';
     protected $helpText = '';
     protected $filters = [];
+    protected $format = '';
 
     /**
      * @inheritdoc
@@ -25,6 +27,9 @@ class QueryCommand extends Command
 
         // Add country code option.
         CommandUtil::addCountryCodeOption($this);
+
+        // Add output format option.
+        CommandUtil::addOutputFormatOption($this);
     }
 
     /**
@@ -36,6 +41,35 @@ class QueryCommand extends Command
 
         if ($countryCode) {
             $this->addCountryFilter($countryCode);
+        }
+
+        $format = CommandUtil::validateOutputFormatOption($input);
+
+        if ($format) {
+            $this->format = $format;
+        }
+    }
+
+    /**
+     * Output the scraped data.
+     *
+     * @param ScraperInterface $scraper
+     */
+    protected function output(ScraperInterface $scraper)
+    {
+        $scraper->scrape();
+        $dataObject = $scraper->getDataObject();
+
+        switch ($this->format) {
+            case 'json':
+                print $dataObject->getDataAsJson();
+                break;
+            case 'csv':
+                print $dataObject->getDataAsCsv();
+                break;
+
+            default:
+                print_r($dataObject->getData());
         }
     }
 }
