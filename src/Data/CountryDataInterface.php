@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data;
+namespace OviDigital\Covid19DataScraper\Data;
 
 interface CountryDataInterface extends DataInterface {
     /**

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Scraper;
+namespace OviDigital\Covid19DataScraper\Scraper;
 
-use App\Data\DataInterface;
+use OviDigital\Covid19DataScraper\Data\DataInterface;
 
 interface ScraperInterface
 {

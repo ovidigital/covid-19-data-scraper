@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Parser;
+namespace OviDigital\Covid19DataScraper\Parser;
 
-use App\Data\CountryData;
-use App\Data\CountryDataInterface;
-use App\Data\DataInterface;
+use OviDigital\Covid19DataScraper\Data\CountryData;
+use OviDigital\Covid19DataScraper\Data\CountryDataInterface;
+use OviDigital\Covid19DataScraper\Data\DataInterface;
 use League\ISO3166\ISO3166;
 use Symfony\Component\CssSelector\Exception\ParseException;
 use Symfony\Component\DomCrawler\Crawler;

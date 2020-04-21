@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace OviDigital\Covid19DataScraper\Command;
 
 trait CommandFilterTrait
 {

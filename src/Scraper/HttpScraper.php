@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Scraper;
+namespace OviDigital\Covid19DataScraper\Scraper;
 
-use App\Data\DataInterface;
-use App\Parser\ParserInterface;
+use OviDigital\Covid19DataScraper\Data\DataInterface;
+use OviDigital\Covid19DataScraper\Parser\ParserInterface;
 use Symfony\Component\HttpClient\CurlHttpClient;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;

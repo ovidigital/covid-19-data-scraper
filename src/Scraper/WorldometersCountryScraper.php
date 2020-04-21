@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Scraper;
+namespace OviDigital\Covid19DataScraper\Scraper;
 
-use App\Parser\ParserInterface;
-use App\Parser\WorldometersCountryParser;
-use App\Util\WorldometersUtil;
+use OviDigital\Covid19DataScraper\Parser\ParserInterface;
+use OviDigital\Covid19DataScraper\Parser\WorldometersCountryParser;
+use OviDigital\Covid19DataScraper\Util\WorldometersUtil;
 
 class WorldometersCountryScraper extends HttpScraper
 {

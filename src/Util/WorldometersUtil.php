@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Util;
+namespace OviDigital\Covid19DataScraper\Util;
 
 class WorldometersUtil {
 

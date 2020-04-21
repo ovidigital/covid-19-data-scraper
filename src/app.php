@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace OviDigital\Covid19DataScraper;
 
-use App\Command\QueryWorldometersCommand;
+use OviDigital\Covid19DataScraper\Command\QueryWorldometersCommand;
 use Symfony\Component\Console\Application;
 
 const NAME = 'covid-19-data-scraper';
-const VERSION = '0.2.1';
+const VERSION = '0.3.0';
 
 require __DIR__ . '/../vendor/autoload.php';
 

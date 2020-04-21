@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Command;
+namespace OviDigital\Covid19DataScraper\Command;
 
-use App\Scraper\WorldometersCountryScraper;
+use OviDigital\Covid19DataScraper\Scraper\WorldometersCountryScraper;
 use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

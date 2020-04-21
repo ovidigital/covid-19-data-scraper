@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Command;
+namespace OviDigital\Covid19DataScraper\Command;
 
-use App\Scraper\ScraperInterface;
-use App\Util\CommandUtil;
+use OviDigital\Covid19DataScraper\Scraper\ScraperInterface;
+use OviDigital\Covid19DataScraper\Util\CommandUtil;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

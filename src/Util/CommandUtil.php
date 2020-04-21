@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Util;
+namespace OviDigital\Covid19DataScraper\Util;
 
 use Exception;
 use League\ISO3166\ISO3166;
