@@ -16,4 +16,3 @@ Thumbs.db
 /composer.lock
 /vendor/
 /build/
-/tests/

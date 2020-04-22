@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="container">
+    <div id="maincounter-wrap" style="margin-top:15px">
+        <h1>Coronavirus Cases:</h1>
+        <div class="maincounter-number">
+            <span style="color:#aaa">1,500 </span>
+        </div>
+    </div>
+    <div id="maincounter-wrap" style="margin-top:15px">
+        <h1>Deaths:</h1>
+        <div class="maincounter-number">
+            <span>60</span>
+        </div>
+    </div>
+    <div id="maincounter-wrap" style="margin-top:15px;">
+        <h1>Recovered:</h1>
+        <div class="maincounter-number" style="color:#8ACA2B ">
+            <span>120</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        Highcharts.chart('graph-cases-daily', {
+            xAxis: {
+                categories: ["Feb 15","Feb 16","Feb 17","Feb 18","Feb 19","Feb 20","Feb 21"]
+            },
+            series: [{
+                name: 'Daily Cases',
+                data: [null,null,100,200,300,400,500]
+            }]
+        });
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('graph-deaths-daily', {
+            xAxis: {
+                categories: ["Feb 15","Feb 16","Feb 17","Feb 18","Feb 19","Feb 20","Feb 21"]
+            },
+            series: [{
+                data: [0,0,0,0,10,20,30]
+            }]
+        });
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('cases-cured-daily', {
+            xAxis: {
+                categories: ["Feb 15","Feb 16","Feb 17","Feb 18","Feb 19","Feb 20","Feb 21"]
+            },
+            series: [
+                {
+                    name: 'New Recoveries',
+                    data: [0,0,0,0,20,40,60]
+                },
+                {
+                    name: 'New Cases',
+                    data: [null,null,100,200,300,400,500]
+                }
+            ]
+        });
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('graph-active-cases-total', {
+            xAxis: {
+                categories: ["Feb 15","Feb 16","Feb 17","Feb 18","Feb 19","Feb 20","Feb 21"]
+            },
+            series: [
+                {
+                    name: 'Active Cases',
+                    data: [null,null,100,300,570,910,1320]
+                }
+            ]
+        });
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('coronavirus-deaths-linear', {
+            xAxis: {
+                categories: ["Feb 15","Feb 16","Feb 17","Feb 18","Feb 19","Feb 20","Feb 21"]
+            },
+            series: [
+                {
+                    name: 'Total deaths',
+                    data: [0,0,0,0,10,30,60]
+                }
+            ]
+        });
+    </script>
+</div>
+</body>
+</html>
