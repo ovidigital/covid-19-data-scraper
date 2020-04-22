@@ -46,20 +46,20 @@ class WorldometersCountryTest extends TestCase {
 
         $dailyStats = $dataAsArray['daily'];
 
-        $this->assertEquals(7, count($dailyStats['cases']));
-        $this->assertEquals(7, count($dailyStats['deaths']));
-        $this->assertEquals(7, count($dailyStats['recovered']));
+        $this->assertEquals(7, count($dailyStats['new_cases']));
+        $this->assertEquals(7, count($dailyStats['new_deaths']));
+        $this->assertEquals(7, count($dailyStats['new_recovered']));
         $this->assertEquals(7, count($dailyStats['total_active_cases']));
         $this->assertEquals(7, count($dailyStats['total_deaths']));
 
-        $this->assertEquals('null', $dailyStats['cases']['2020-02-15']);
-        $this->assertEquals(200, $dailyStats['cases']['2020-02-18']);
+        $this->assertEquals('null', $dailyStats['new_cases']['2020-02-15']);
+        $this->assertEquals(200, $dailyStats['new_cases']['2020-02-18']);
 
-        $this->assertEquals(0, $dailyStats['deaths']['2020-02-15']);
-        $this->assertEquals(20, $dailyStats['deaths']['2020-02-20']);
+        $this->assertEquals(0, $dailyStats['new_deaths']['2020-02-15']);
+        $this->assertEquals(20, $dailyStats['new_deaths']['2020-02-20']);
 
-        $this->assertEquals(0, $dailyStats['recovered']['2020-02-15']);
-        $this->assertEquals(40, $dailyStats['recovered']['2020-02-20']);
+        $this->assertEquals(0, $dailyStats['new_recovered']['2020-02-15']);
+        $this->assertEquals(40, $dailyStats['new_recovered']['2020-02-20']);
 
         $this->assertEquals('null', $dailyStats['total_active_cases']['2020-02-15']);
         $this->assertEquals(910, $dailyStats['total_active_cases']['2020-02-20']);

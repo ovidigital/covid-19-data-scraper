@@ -63,7 +63,7 @@ Array
 
     [daily] => Array
         (
-            [cases] => Array
+            [new_cases] => Array
                 (
                     [2020-02-15] => null
                     [2020-02-16] => null
@@ -74,7 +74,7 @@ Array
                     [2020-02-21] => 500
                 )
 
-            [deaths] => Array
+            [new_deaths] => Array
                 (
                     [2020-02-15] => 0
                     [2020-02-16] => 0
@@ -85,7 +85,7 @@ Array
                     [2020-02-21] => 30
                 )
 
-            [recovered] => Array
+            [new_recovered] => Array
                 (
                     [2020-02-15] => 0
                     [2020-02-16] => 0

@@ -101,15 +101,15 @@ class WorldometersCountryParser implements ParserInterface
     protected function parseDaily(Crawler $crawler): void
     {
         $dailyCharts = [
-            'cases' => [
+            'new_cases' => [
                 '_contains_string' => "Highcharts.chart('graph-cases-daily'",
                 'raw_content' => '',
             ],
-            'deaths' => [
+            'new_deaths' => [
                 '_contains_string' => "Highcharts.chart('graph-deaths-daily'",
                 'raw_content' => '',
             ],
-            'recovered' => [
+            'new_recovered' => [
                 '_contains_string' => "Highcharts.chart('cases-cured-daily'",
                 'raw_content' => '',
             ],

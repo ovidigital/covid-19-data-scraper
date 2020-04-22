@@ -30,9 +30,11 @@ class CountryData implements CountryDataInterface
                 'recovered' => '',
             ],
             'daily' => [
-                'cases' => [],
-                'deaths' => [],
-                'recovered' => [],
+                'new_cases' => [],
+                'new_deaths' => [],
+                'new_recovered' => [],
+                'total_active_cases' => [],
+                'total_deaths' => [],
             ],
         ];
     }

@@ -15,7 +15,8 @@ interface CountryDataInterface extends DataInterface {
     /**
      * Set the daily statistics.
      *
-     * @param string $key One of the following: 'cases', 'deaths' or 'recovered'
+     * @param string $key One of the following: 'new_cases', 'new_deaths', 'new_recovered',
+     * 'total_active_cases', 'total_deaths'
      * @param array $data The data indexed by day
      */
     public function setDailyStats(string $key, array $data): void;
