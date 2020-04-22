@@ -49,7 +49,7 @@ class WorldometersCountryTest extends TestCase {
         $this->assertEquals(7, count($dailyStats['cases']));
         $this->assertEquals(7, count($dailyStats['deaths']));
         $this->assertEquals(7, count($dailyStats['recovered']));
-        $this->assertEquals(7, count($dailyStats['active_cases']));
+        $this->assertEquals(7, count($dailyStats['total_active_cases']));
         $this->assertEquals(7, count($dailyStats['total_deaths']));
 
         $this->assertEquals('null', $dailyStats['cases']['2020-02-15']);
@@ -61,8 +61,8 @@ class WorldometersCountryTest extends TestCase {
         $this->assertEquals(0, $dailyStats['recovered']['2020-02-15']);
         $this->assertEquals(40, $dailyStats['recovered']['2020-02-20']);
 
-        $this->assertEquals('null', $dailyStats['active_cases']['2020-02-15']);
-        $this->assertEquals(910, $dailyStats['active_cases']['2020-02-20']);
+        $this->assertEquals('null', $dailyStats['total_active_cases']['2020-02-15']);
+        $this->assertEquals(910, $dailyStats['total_active_cases']['2020-02-20']);
 
         $this->assertEquals(0, $dailyStats['total_deaths']['2020-02-15']);
         $this->assertEquals(30, $dailyStats['total_deaths']['2020-02-20']);
