@@ -3,7 +3,7 @@
 
 [![Latest Version](https://img.shields.io/github/release/ovidigital/covid-19-data-scraper.svg?style=flat-square)](https://github.com/ovidigital/covid-19-data-scraper/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Build Status](https://img.shields.io/travis/ovidigital/covid-19-data-scraper/master.svg?style=flat-square&logo=travis&logoColor=white)](https://travis-ci.org/ovidigital/covid-19-data-scraper)
+[![Build Status](https://img.shields.io/travis/ovidigital/covid-19-data-scraper/master.svg?style=flat-square&logo=travis&logoColor=white)](https://travis-ci.com/ovidigital/covid-19-data-scraper)
 
 This library aims to be a quick way to extract statistical data for [COVID-19](https://en.wikipedia.org/wiki/Coronavirus_disease_2019) (Coronavirus disease 2019) from multiple sources on the Internet and provide this data in multiple formats (PHP Array, JSON, CSV etc.)
 
@@ -93,6 +93,28 @@ Array
                     [2020-02-18] => 0
                     [2020-02-19] => 20
                     [2020-02-20] => 40
+                    [2020-02-21] => 60
+                )
+
+            [total_active_cases] => Array
+                (
+                    [2020-02-15] => null
+                    [2020-02-16] => null
+                    [2020-02-17] => 100
+                    [2020-02-18] => 300
+                    [2020-02-19] => 570
+                    [2020-02-20] => 910
+                    [2020-02-21] => 1320
+                )
+
+            [total_deaths] => Array
+                (
+                    [2020-02-15] => 0
+                    [2020-02-16] => 0
+                    [2020-02-17] => 0
+                    [2020-02-18] => 0
+                    [2020-02-19] => 10
+                    [2020-02-20] => 30
                     [2020-02-21] => 60
                 )
 
