@@ -113,6 +113,14 @@ class WorldometersCountryParser implements ParserInterface
                 '_contains_string' => "Highcharts.chart('cases-cured-daily'",
                 'raw_content' => '',
             ],
+            'total_active_cases' => [
+                '_contains_string' => "Highcharts.chart('graph-active-cases-total'",
+                'raw_content' => '',
+            ],
+            'total_deaths' => [
+                '_contains_string' => "Highcharts.chart('coronavirus-deaths-linear'",
+                'raw_content' => '',
+            ]
         ];
 
         $crawler->filter('script')->each(
@@ -121,8 +129,12 @@ class WorldometersCountryParser implements ParserInterface
 
                 if ($text) {
                     foreach ($dailyCharts as $key => &$item) {
-                        if (strpos($text, $item['_contains_string']) !== FALSE) {
-                            $item['raw_content'] = str_replace(["\n", "\r"], '', $text);
+                        if ($startPos = strpos($text, $item['_contains_string']) !== FALSE) {
+                            $endPos = strpos($text, ');', $startPos);
+                            if ($endPos !== FALSE) {
+                                $item['raw_content'] = substr($text, $startPos, $endPos - $startPos + 1);
+                            }
+                            $item['raw_content'] = str_replace(["\n", "\r"], '', $item['raw_content']);
                         }
                     }
                 }
@@ -130,8 +142,11 @@ class WorldometersCountryParser implements ParserInterface
         );
 
         foreach ($dailyCharts as $key => $item) {
-            $content = $item['raw_content'];
-            $splitted = explode('{', $content);
+            if (empty($item['raw_content'])) {
+                continue;
+            }
+
+            $splitted = explode('{', $item['raw_content']);
             unset($splitted[0]);
             $content = '{' . implode('{', $splitted);
             $content = rtrim($content, ");\t\n\r\0\x0B");
@@ -145,7 +160,6 @@ class WorldometersCountryParser implements ParserInterface
                 $data = [];
 
                 foreach ($chartOptions['xAxis']['categories'] as $i => $day) {
-
                     try {
                         $day = (new \DateTime($day))->format('Y-m-d');
                     } catch (\Exception $exception) {}
