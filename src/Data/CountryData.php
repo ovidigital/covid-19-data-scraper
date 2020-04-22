@@ -128,6 +128,22 @@ class CountryData implements CountryDataInterface
     /**
      * @inheritDoc
      */
+    public function setDailyStats(string $key, array $data): void
+    {
+        $this->data['daily'][$key] = $data;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDailyStats(): array
+    {
+        return $this->data['daily'];
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getErrors(): array
     {
         return isset($this->data['errors']) ? $this->data['errors'] : [];

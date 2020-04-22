@@ -1,14 +1,18 @@
 {
     "name": "ovidigital/covid-19-data-scraper",
-    "description": "PHP CLI utility to extract COVID-19 statistical data from multiple sources on the Internet",
+    "description": "PHP library to extract COVID-19 statistical data from multiple sources on the Internet",
     "type": "library",
     "require": {
-        "symfony/console": "^5.0",
+        "php": "^7.2",
+        "ext-json": "*",
         "league/iso3166": "^2.1",
         "symfony/http-client": "^5.0",
         "symfony/dom-crawler": "^5.0",
         "symfony/css-selector": "^5.0",
-        "ext-json": "*"
+        "ovidigital/js-object-to-json": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
     },
     "license": "MIT",
     "authors": [
@@ -20,7 +24,13 @@
     "autoload": {
         "psr-4": { "OviDigital\\Covid19DataScraper\\": "src/" }
     },
-    "keywords": ["covid", "covid-19", "corona", "virus", "data", "scraper", "stats", "statistics"],
+    "autoload-dev": {
+        "psr-4": { "OviDigital\\Tests\\": "tests/" }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "keywords": ["covid", "covid-19", "corona", "virus", "data", "scraper", "extract", "stats", "statistics"],
     "homepage": "https://github.com/ovidigital/covid-19-data-scraper",
     "support": {
         "issues": "https://github.com/ovidigital/covid-19-data-scraper/issues",

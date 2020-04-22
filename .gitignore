@@ -11,8 +11,9 @@ Icon?
 Thumbs.db
 ._*
 
-# Composer vendor folder
-vendor/
-
-# Symfony generated files & folders
-/var/
+# Build/Test/Deploy
+.phpunit.result.cache
+/composer.lock
+/vendor/
+/build/
+/tests/

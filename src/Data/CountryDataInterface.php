@@ -13,11 +13,26 @@ interface CountryDataInterface extends DataInterface {
     public function setTotals(int $cases, int $deaths, int $recovered = null): void;
 
     /**
+     * Set the daily statistics.
+     *
+     * @param string $key One of the following: 'cases', 'deaths' or 'recovered'
+     * @param array $data The data indexed by day
+     */
+    public function setDailyStats(string $key, array $data): void;
+
+    /**
      * Get totals.
      *
      * @return array Total cases, deaths and recovered
      */
     public function getTotals(): array;
+
+    /**
+     * Get the daily statistics.
+     *
+     * @return array The daily statistics
+     */
+    public function getDailyStats(): array;
 
     /**
      * Get meta data.

@@ -19,8 +19,8 @@ class WorldometersCountryScraper extends HttpScraper
      */
     public function __construct(string $countryCode, ParserInterface $parser = null)
     {
-        $this->parser = $parser ?: new WorldometersCountryParser($countryCode);
         $this->countryCode = $countryCode;
         $this->url = WorldometersUtil::getCountryUrl($this->countryCode);
+        $this->parser = $parser ?: new WorldometersCountryParser($countryCode);
     }
 }
