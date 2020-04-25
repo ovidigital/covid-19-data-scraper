@@ -108,6 +108,7 @@ class WorldometersUtil {
             'GH' => 'ghana',
             'GI' => 'gibraltar',
             'GR' => 'greece',
+            'GL' => 'greenland',
             'GD' => 'grenada',
             'GP' => 'guadeloupe',
             'GT' => 'guatemala',
