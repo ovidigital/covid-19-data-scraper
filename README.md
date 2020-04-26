@@ -33,7 +33,13 @@ use OviDigital\Covid19DataScraper\StatisticsService;
 
 $statisticsService = new StatisticsService();
 
-// Scrape statistics for Romania (alpha-2 country code "RO") from Worldometers
+// Scrape Worldometers aggregated statistics for all countries
+$dataObject = $statisticsService->getWorldometersAggregated();
+
+// Scrape Worldometers aggregated statistics for specific countries using alpha-2 country codes
+$dataObject = $statisticsService->getWorldometersAggregated(['US', 'RO']);
+
+// Scrape Worldometers country statistics for specific country (e.g. Romania)
 $dataObject = $statisticsService->getWorldometersCountry('RO');
 
 // Get data as PHP array
@@ -43,7 +49,63 @@ $dataAsArray = $dataObject->toArray();
 $dataAsJson = $dataObject->toJson();
 ```
 
-## Example of returned data
+## Returned Data
+Depending on the source used to scrape the statistics, the data and schema might slightly differ.<br>
+The examples below display partial, dummy data. 
+
+#### Example Worldometers Aggregated Data
+```json
+{
+    "meta": {
+        "timestamp": 1587914124
+    },
+    "countries": {
+        "US": {
+            "meta": {
+                "country_code": "US",
+                "country_name": "United States of America",
+                "country_slug": "us"
+            },
+            "data": {
+                "total_cases": 123456,
+                "new_cases_today": 1337,
+                "total_deaths": 45678,
+                "new_deaths_today": 101,
+                "total_recovered": 80000,
+                "total_active_cases": 765432,
+                "total_serious_critical": 13337,
+                "total_tests": 4194304,
+                "cases_per_million": 2121,
+                "deaths_per_million": 196,
+                "tests_per_million": 16384
+            }
+        },
+        "RO": {
+            "meta": {
+                "country_code": "RO",
+                "country_name": "Romania",
+                "country_slug": "romania"
+            },
+            "data": {
+                "total_cases": 10123,
+                "new_cases_today": 321,
+                "total_deaths": 500,
+                "new_deaths_today": -5,
+                "total_recovered": 2350,
+                "total_active_cases": 7123,
+                "total_serious_critical": 210,
+                "total_tests": 112112,
+                "cases_per_million": 543,
+                "deaths_per_million": 25.15,
+                "tests_per_million": 12345
+            }
+        }
+    }
+}
+```
+
+#### Example Worldometers Country Data
+
 ```json
 {
     "meta": {
