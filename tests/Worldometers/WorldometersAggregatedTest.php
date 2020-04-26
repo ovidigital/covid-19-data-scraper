@@ -4,6 +4,7 @@ namespace OviDigital\Tests\Worldometers;
 
 use OviDigital\Covid19DataScraper\Data\DataInterface;
 use OviDigital\Covid19DataScraper\Parser\WorldometersAggregatedParser;
+use OviDigital\Covid19DataScraper\Scraper\WorldometersAggregatedScraper;
 use PHPUnit\Framework\TestCase;
 
 class WorldometersAggregatedTest extends TestCase
@@ -14,7 +15,14 @@ class WorldometersAggregatedTest extends TestCase
     {
         $parser = new WorldometersAggregatedParser();
 
-        $dataObject = $parser->parse($this->content);
+        $scraper = new WorldometersAggregatedScraper([], $parser);
+
+        $reflection = new \ReflectionClass($scraper);
+        $content = $reflection->getProperty('content');
+        $content->setAccessible(true);
+        $content->setValue($scraper, $this->content);
+
+        $dataObject = $scraper->getDataObject();
 
         $this->assertInstanceOf(DataInterface::class, $dataObject);
 
@@ -41,6 +49,16 @@ class WorldometersAggregatedTest extends TestCase
         $this->assertEquals(2121, $usaData['cases_per_million']);
         $this->assertEquals(196, $usaData['deaths_per_million']);
         $this->assertEquals(16384, $usaData['tests_per_million']);
+
+        $meta = $dataObject->getMeta();
+
+        $this->assertArrayHasKey('timestamp', $meta);
+
+        $this->assertEmpty($dataObject->getErrors());
+
+        $dataObject->addError('Just a test error');
+
+        $this->assertContainsEquals('Just a test error', $dataObject->getErrors());
     }
 
     public function testParsedDataWithCountryFilter()
@@ -72,6 +90,11 @@ class WorldometersAggregatedTest extends TestCase
         $this->assertEquals(543, $romaniaData['cases_per_million']);
         $this->assertEquals(25.15, $romaniaData['deaths_per_million']);
         $this->assertEquals(12345, $romaniaData['tests_per_million']);
+
+        $dataAsJson = $dataObject->toJson();
+        $this->assertEquals($dataAsArray, json_decode($dataAsJson, true));
+
+        $this->assertEquals('Not implemented yet', $dataObject->toCsv());
     }
 
     protected function setUp(): void

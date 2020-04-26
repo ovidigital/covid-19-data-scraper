@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use OviDigital\Covid19DataScraper\Data\CountryDataInterface;
 use OviDigital\Covid19DataScraper\Parser\WorldometersCountryParser;
 use OviDigital\Covid19DataScraper\Scraper\WorldometersCountryScraper;
+use OviDigital\Covid19DataScraper\Util\WorldometersUtil;
 use PHPUnit\Framework\TestCase;
 
 class WorldometersCountryTest extends TestCase
@@ -18,16 +19,28 @@ class WorldometersCountryTest extends TestCase
         new WorldometersCountryScraper('ZZ');
     }
 
+    public function testUrl()
+    {
+        $url = WorldometersUtil::getCountryUrl('RO');
+
+        $this->assertRegExp('@/country/romania/@', $url);
+    }
+
     public function testParsedData()
     {
         $countryCode = 'RO';
         $countryName = 'Romania';
-
-        $parser = new WorldometersCountryParser($countryCode);
-
         $content = file_get_contents(__DIR__ . '/worldometers_country_sample.html');
 
-        $dataObject = $parser->parse($content);
+        $scraper = new WorldometersCountryScraper($countryCode);
+
+        $reflection = new \ReflectionClass($scraper);
+        $scraperContentProperty = $reflection->getProperty('content');
+        $scraperContentProperty->setAccessible(true);
+        $scraperContentProperty->setValue($scraper, $content);
+
+        /** @var CountryDataInterface $dataObject */
+        $dataObject = $scraper->getDataObject();
 
         $this->assertInstanceOf(CountryDataInterface::class, $dataObject);
 
@@ -44,9 +57,13 @@ class WorldometersCountryTest extends TestCase
             'recovered' => 120
         ];
 
-        $this->assertEquals($expectedTotals, $dataAsArray['data']['totals']);
+        $this->assertEquals($expectedTotals, $dataObject->getTotals());
 
-        $dailyStats = $dataAsArray['data']['daily'];
+        $this->assertEquals($expectedTotals['cases'], $dataObject->getTotalCases());
+        $this->assertEquals($expectedTotals['deaths'], $dataObject->getTotalDeaths());
+        $this->assertEquals($expectedTotals['recovered'], $dataObject->getTotalRecovered());
+
+        $dailyStats = $dataObject->getDailyStats();
 
         $this->assertEquals(7, count($dailyStats['new_cases']));
         $this->assertEquals(7, count($dailyStats['new_deaths']));
@@ -68,6 +85,9 @@ class WorldometersCountryTest extends TestCase
 
         $this->assertEquals(0, $dailyStats['total_deaths']['2020-02-15']);
         $this->assertEquals(30, $dailyStats['total_deaths']['2020-02-20']);
+
+        $dataAsJson = $dataObject->toJson();
+        $this->assertEquals($dataAsArray, json_decode($dataAsJson, true));
     }
 
 }
