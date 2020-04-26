@@ -2,27 +2,43 @@
 
 namespace OviDigital\Covid19DataScraper\Data;
 
-interface DataInterface {
+interface DataInterface
+{
     /**
-     * Get the data as array.
+     * Export as array.
      *
      * @return array The stored data
      */
-    public function getData(): array;
+    public function toArray(): array;
 
     /**
-     * Get the data as JSON.
+     * Export as JSON.
      *
      * @return string The stored data as JSON
      */
-    public function getDataAsJson(): string;
+    public function toJson(): string;
 
     /**
-     * Get the data as CSV.
+     * Export as CSV.
      *
      * @return string The stored data as CSV
      */
-    public function getDataAsCsv(): string;
+    public function toCsv(): string;
+
+    /**
+     * Get the data.
+     *
+     * @param string $key Specific key to get partial data for
+     * @return mixed
+     */
+    public function getData(string $key = '');
+
+    /**
+     * Set the data.
+     * @param array $data
+     * @param string $key Specific key to set data for
+     */
+    public function setData(array $data, string $key = ''): void;
 
     /**
      * Add an error.
@@ -37,6 +53,13 @@ interface DataInterface {
      * @return array The errors.
      */
     public function getErrors(): array;
+
+    /**
+     * Get the meta data.
+     *
+     * @return array
+     */
+    public function getMeta(): array;
 
     /**
      * Add meta data.

@@ -2,16 +2,18 @@
 
 namespace OviDigital\Tests\Worldometers;
 
+use InvalidArgumentException;
 use OviDigital\Covid19DataScraper\Data\CountryDataInterface;
 use OviDigital\Covid19DataScraper\Parser\WorldometersCountryParser;
 use OviDigital\Covid19DataScraper\Scraper\WorldometersCountryScraper;
 use PHPUnit\Framework\TestCase;
 
-class WorldometersCountryTest extends TestCase {
+class WorldometersCountryTest extends TestCase
+{
 
     public function testInvalidCountryCode()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new WorldometersCountryScraper('ZZ');
     }
@@ -29,7 +31,7 @@ class WorldometersCountryTest extends TestCase {
 
         $this->assertInstanceOf(CountryDataInterface::class, $dataObject);
 
-        $dataAsArray = $dataObject->getData();
+        $dataAsArray = $dataObject->toArray();
 
         $this->assertIsArray($dataAsArray);
 
@@ -42,9 +44,9 @@ class WorldometersCountryTest extends TestCase {
             'recovered' => 120
         ];
 
-        $this->assertEquals($expectedTotals, $dataAsArray['totals']);
+        $this->assertEquals($expectedTotals, $dataAsArray['data']['totals']);
 
-        $dailyStats = $dataAsArray['daily'];
+        $dailyStats = $dataAsArray['data']['daily'];
 
         $this->assertEquals(7, count($dailyStats['new_cases']));
         $this->assertEquals(7, count($dailyStats['new_deaths']));
